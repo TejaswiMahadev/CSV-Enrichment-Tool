@@ -3,5 +3,5 @@ pandas
 streamlit-option-menu
 google-generativeai
 python-dotenv
-serpapi
+serpapi==2.4.0  
 plotly
