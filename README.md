@@ -62,15 +62,26 @@ The app can be deployed on platforms like [Render](https://render.com/) or [Hero
 
 ## Usage
 1. **Upload CSV**: Upload a CSV file to start analyzing.
-2. **Navigate Using Sidebar**: Use the sidebar to explore different sections like data overview, AI analysis, visualizations, etc.
-3. **Interact with Data**: Ask questions or run a web search to enrich your dataset.
+2. **Interact with Data**: Ask questions or run a web search to enrich your dataset.
 
-## Example Screenshots
-![Data Overview](screenshots/data_overview.png)
+## Demonstration
+![Data Overview]![image](https://github.com/user-attachments/assets/a921ada6-21f1-4be5-aa30-97c055195d06)
+
 *Screenshot of the Data Overview page.*
 
-![AI Analysis](screenshots/ai_analysis.png)
+![AI Analysis]![image](https://github.com/user-attachments/assets/93b50092-1ce4-4f39-b515-82be8268fd31)
+
 *Screenshot of the AI Analysis page.*
+![Enrichment Suggestions] ![image](https://github.com/user-attachments/assets/94ae6f6d-f52f-403a-a7e2-4e094666d2ba)
+
+*Screenshot of the Enrichment Suggestions page.*
+![Visualizations]![image](https://github.com/user-attachments/assets/73b1bdf3-3fbf-493e-9546-7a997694a077)
+*Screenshot of the Visualizations page.*
+![Chat with CSV]![image](https://github.com/user-attachments/assets/8a729528-f4de-4d43-b30a-bb4485db8c93)
+
+*Screenshot of the Chat with CSV page.*
+![Web Search] ![image](https://github.com/user-attachments/assets/047a748f-3374-4bda-8aee-0ca28aeb1c91)
+*Screenshot of the Web Search page.*
 
 ## Known Issues
 - Ensure the API keys are correctly set up in the environment for proper functionality.
