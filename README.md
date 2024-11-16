@@ -26,8 +26,8 @@ The **AI-Powered CSV Analysis & Enrichment Tool** is a web application built wit
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/TejaswiMahadev/CSV-Enrichment-Tool.git
+    cd CSV-Enrichment-Tool
     ```
 
 2. **Create a virtual environment**:
