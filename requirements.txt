@@ -3,5 +3,5 @@ pandas
 streamlit-option-menu
 google-generativeai
 python-dotenv
-serpapi
+google-search-results
 plotly
