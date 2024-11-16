@@ -65,22 +65,22 @@ The app can be deployed on platforms like [Render](https://render.com/) or [Hero
 2. **Interact with Data**: Ask questions or run a web search to enrich your dataset.
 
 ## Demonstration
-![Data Overview]![image](https://github.com/user-attachments/assets/a921ada6-21f1-4be5-aa30-97c055195d06)
+![image](https://github.com/user-attachments/assets/a921ada6-21f1-4be5-aa30-97c055195d06)
 
 *Screenshot of the Data Overview page.*
 
-![AI Analysis]![image](https://github.com/user-attachments/assets/93b50092-1ce4-4f39-b515-82be8268fd31)
+![image](https://github.com/user-attachments/assets/93b50092-1ce4-4f39-b515-82be8268fd31)
 
 *Screenshot of the AI Analysis page.*
-![Enrichment Suggestions] ![image](https://github.com/user-attachments/assets/94ae6f6d-f52f-403a-a7e2-4e094666d2ba)
+![image](https://github.com/user-attachments/assets/94ae6f6d-f52f-403a-a7e2-4e094666d2ba)
 
 *Screenshot of the Enrichment Suggestions page.*
-![Visualizations]![image](https://github.com/user-attachments/assets/73b1bdf3-3fbf-493e-9546-7a997694a077)
+![image](https://github.com/user-attachments/assets/73b1bdf3-3fbf-493e-9546-7a997694a077)
 *Screenshot of the Visualizations page.*
-![Chat with CSV]![image](https://github.com/user-attachments/assets/8a729528-f4de-4d43-b30a-bb4485db8c93)
+![image](https://github.com/user-attachments/assets/8a729528-f4de-4d43-b30a-bb4485db8c93)
 
 *Screenshot of the Chat with CSV page.*
-![Web Search] ![image](https://github.com/user-attachments/assets/047a748f-3374-4bda-8aee-0ca28aeb1c91)
+![image](https://github.com/user-attachments/assets/047a748f-3374-4bda-8aee-0ca28aeb1c91)
 *Screenshot of the Web Search page.*
 
 ## Known Issues
@@ -92,9 +92,6 @@ This project is licensed under the MIT License.
 
 ## Contact
 **Author**: Tejaswi Mahadev  
-**Email**: [your-email@example.com](mailto:your-email@example.com)  
-**LinkedIn**: [Your LinkedIn](https://www.linkedin.com/in/your-profile)
+**Email**: [tejaswimahadev9@gmail.com](tejaswimahadev9@gmail.com)  
+**LinkedIn**: [https://www.linkedin.com/in/tejaswi-mahadev](https://www.linkedin.com/in/tejaswi-mahadev)
 
----
-
-Feel free to customize the README further to suit your project's needs, including adding more screenshots or sections as required.
