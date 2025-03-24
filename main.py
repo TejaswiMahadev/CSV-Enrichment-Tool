@@ -17,7 +17,13 @@ def get_api_key():
     if not api_key:
         if 'GOOGLE_API_KEY' in st.secrets:
             api_key = st.secrets['GOOGLE_API_KEY']
-    return api_key
+
+    serp_api_key = os.getenv('SERP_API_KEY')
+    if not serp_api_key:
+        if 'SERP_API_KEY' in st.secrets:
+            serp_api_key = st.secrets['SERP_API_KEY']
+    return api_key , serp_api_key
+    
 
 class CSVEnrichmentAgent:
     def __init__(self):
@@ -28,7 +34,7 @@ class CSVEnrichmentAgent:
             
         # Configure Gemini
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
         
     def analyze_columns(self, columns: List[str]) -> str:
         prompt = f"""Analyze these columns and suggest potential insights:
@@ -76,7 +82,7 @@ class CSVEnrichmentAgent:
         """Perform a dynamic web search using SerpAPI and return results."""
         search_params = {
             "q": query,
-            "api_key": "c26bbe2401ac8dbe42ccf3dbe28b7fa60695c34f08abb9551dd7267b985227f2"  # Replace with your SerpAPI key
+            "api_key": "serp_api_key"  # Replace with your SerpAPI key
         }
         
         search = GoogleSearch(search_params)
