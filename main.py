@@ -34,8 +34,7 @@ class CSVEnrichmentAgent:
             st.stop()
             
         # Configure Gemini
-        genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-2.5-flash')
+            self.client = genai.Client(api_key=api_key)
         
     def analyze_columns(self, columns: List[str]) -> str:
         prompt = f"""Analyze these columns and suggest potential insights:
@@ -45,17 +44,45 @@ class CSVEnrichmentAgent:
         2. Potential Insights
         3. Recommended Visualizations"""
         
-        response = self.model.generate_content(prompt)
+        response = self.client.models.generate_content(
+              model="gemini-1.5-flash",
+              contents=prompt,
+               config=types.GenerateContentConfig(
+                temperature=0.4,
+                max_output_tokens=600
+            )
+            )
+            
         return response.text
-    
+
+    from google.genai import types
+
     def suggest_enrichments(self, columns: List[str], sample_data: str) -> str:
-        prompt = f"""Given these columns and sample data, suggest enrichment opportunities:
-        Columns: {columns}
-        Sample Data: {sample_data}
-        Provide specific enrichment suggestions that could add value to this dataset."""
-        
-        response = self.model.generate_content(prompt)
+        prompt = f"""
+    Given the following dataset:
+
+    Columns:
+    {columns}
+
+    Sample Data:
+    {sample_data}
+
+    Suggest high-value enrichment opportunities such as:
+    - External data sources
+    - Derived features
+    - Business or analytical signals
+    - Metadata or entity enrichment
+    """
+        response = self.client.models.generate_content(
+        model="gemini-1.5-flash",
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.5,
+            max_output_tokens=600
+        )
+    )
         return response.text
+
     
     def generate_insights(self, df: pd.DataFrame) -> Dict:
         # Generate basic statistics
