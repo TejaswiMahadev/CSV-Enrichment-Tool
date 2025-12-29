@@ -1,7 +1,8 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import pandas as pd
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from typing import List, Dict
 import plotly.express as px
 import os
@@ -34,7 +35,7 @@ class CSVEnrichmentAgent:
             
         # Configure Gemini
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
+        self.model = genai.GenerativeModel('gemini-2.5-flash')
         
     def analyze_columns(self, columns: List[str]) -> str:
         prompt = f"""Analyze these columns and suggest potential insights:
