@@ -49,7 +49,7 @@ class CSVEnrichmentAgent:
         """
 
         response = self.client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-2.5-flash",
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.4,
@@ -70,7 +70,7 @@ class CSVEnrichmentAgent:
         """
 
         response = self.client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-2.5-flash",
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.5,
@@ -91,7 +91,7 @@ class CSVEnrichmentAgent:
         """
 
         response = self.client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-2.5-flash",
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.3,
