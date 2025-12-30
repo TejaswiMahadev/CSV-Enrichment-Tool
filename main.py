@@ -53,7 +53,7 @@ class CSVEnrichmentAgent:
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.4,
-                max_output_tokens=2000
+                max_output_tokens=4000
             )
         )
         return response.text
@@ -74,7 +74,7 @@ class CSVEnrichmentAgent:
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.5,
-                max_output_tokens=2000
+                max_output_tokens=4000
             )
         )
         return response.text
@@ -95,7 +95,7 @@ class CSVEnrichmentAgent:
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.3,
-                max_output_tokens=2000
+                max_output_tokens=4000
             )
         )
         return response.text
