@@ -28,103 +28,105 @@ def get_api_key():
 
 class CSVEnrichmentAgent:
     def __init__(self):
-        api_key = get_api_key()
-        if not api_key:
-            st.error("Google API Key not found. Please set it in your .env file or Streamlit secrets.")
+        google_key, serp_key = get_api_keys()
+
+        if not google_key:
+            st.error("Google API Key not found")
             st.stop()
-            
-        # Configure Gemini
-            self.client = genai.Client(api_key=api_key)
-        
+
+        self.client = genai.Client(api_key=google_key)
+        self.serp_key = serp_key
+
     def analyze_columns(self, columns: List[str]) -> str:
-        prompt = f"""Analyze these columns and suggest potential insights:
-        Columns: {columns}
-        Provide analysis in this format:
+        prompt = f"""
+        Analyze these dataset columns:
+        {columns}
+
+        Respond with:
         1. Data Overview
-        2. Potential Insights
-        3. Recommended Visualizations"""
-        
+        2. Key Insights
+        3. Suggested Visualizations
+        """
+
         response = self.client.models.generate_content(
-              model="gemini-1.5-flash",
-              contents=prompt,
-               config=types.GenerateContentConfig(
+            model="gemini-1.5-flash",
+            contents=prompt,
+            config=types.GenerateContentConfig(
                 temperature=0.4,
                 max_output_tokens=600
             )
-            )
-            
+        )
         return response.text
-
-    from google.genai import types
 
     def suggest_enrichments(self, columns: List[str], sample_data: str) -> str:
         prompt = f"""
-    Given the following dataset:
+        Dataset Columns:
+        {columns}
 
-    Columns:
-    {columns}
+        Sample Rows:
+        {sample_data}
 
-    Sample Data:
-    {sample_data}
+        Suggest valuable enrichment opportunities.
+        """
 
-    Suggest high-value enrichment opportunities such as:
-    - External data sources
-    - Derived features
-    - Business or analytical signals
-    - Metadata or entity enrichment
-    """
         response = self.client.models.generate_content(
-        model="gemini-1.5-flash",
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            temperature=0.5,
-            max_output_tokens=600
+            model="gemini-1.5-flash",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.5,
+                max_output_tokens=600
+            )
         )
-    )
         return response.text
 
-    
+    def chat_with_csv(self, query: str, df: pd.DataFrame) -> str:
+        prompt = f"""
+        You are a data analyst.
+
+        Sample Data:
+        {df.head().to_string()}
+
+        Question:
+        {query}
+        """
+
+        response = self.client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.3,
+                max_output_tokens=500
+            )
+        )
+        return response.text
+
     def generate_insights(self, df: pd.DataFrame) -> Dict:
-        # Generate basic statistics
-        numeric_stats = df.describe()
-        missing_values = df.isnull().sum()
-        
         return {
-            "statistics": numeric_stats,
-            "missing_values": missing_values,
+            "statistics": df.describe(include="all"),
+            "missing_values": df.isnull().sum(),
             "row_count": len(df),
             "column_count": len(df.columns)
         }
-    
-    def chat_with_csv(self, query: str, df: pd.DataFrame) -> str:
-        sample_data = df.head().to_string()
-        prompt = f"""Using this sample data, answer the following question:
-        Sample Data: {sample_data}
-        Question: {query}
-        Provide a concise, insightful answer based on the data."""
-        
-        response = self.model.generate_content(prompt)
-        return response.text
 
-    def web_search(self, query: str) -> Dict:
-        """Perform a dynamic web search using SerpAPI and return results."""
-        search_params = {
+    def web_search(self, query: str):
+        if not self.serp_key:
+            return []
+
+        search = GoogleSearch({
             "q": query,
-            "api_key": "serp_api_key"  # Replace with your SerpAPI key
-        }
-        
-        search = GoogleSearch(search_params)
-        results = search.get_dict()
+            "api_key": self.serp_key
+        })
 
-        search_results = []
-        for result in results.get('organic_results', []):
-            search_results.append({
-                "title": result.get("title"),
-                "link": result.get("link"),
-                "snippet": result.get("snippet")
-            })
-        
-        return search_results
+        results = search.get_dict()
+        return [
+            {
+                "title": r.get("title"),
+                "snippet": r.get("snippet"),
+                "link": r.get("link")
+            }
+            for r in results.get("organic_results", [])
+        ]
+
 
 def main():
     st.set_page_config(page_title="AI CSV Enrichment Tool", layout="wide")
