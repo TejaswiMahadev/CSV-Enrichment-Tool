@@ -133,7 +133,7 @@ def main():
     st.title("🤖 AI-Powered CSV Analysis & Enrichment")
     
     # API Key input in sidebar if not found in environment
-    if not get_api_key():
+    if not get_api_keys():
         with st.sidebar:
             api_key = st.text_input("Enter your Google API Key", type="password")
             if api_key:
