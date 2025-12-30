@@ -34,8 +34,8 @@ class CSVEnrichmentAgent:
             st.error("Google API Key not found")
             st.stop()
 
-        self.client = genai.Client(api_key=google_key)
-        self.serp_key = serp_key
+        self.client = genai.Client(api_key=api_key)
+        self.serp_key = serp_api_key
 
     def analyze_columns(self, columns: List[str]) -> str:
         prompt = f"""
