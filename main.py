@@ -13,7 +13,7 @@ from serpapi import GoogleSearch
 load_dotenv()
 
 # Get API key from environment or Streamlit secrets
-def get_api_key():
+def get_api_keys():
     api_key = os.getenv('GOOGLE_API_KEY')
     if not api_key:
         if 'GOOGLE_API_KEY' in st.secrets:
